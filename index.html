@@ -177,16 +177,8 @@
     </div>
 
     <script>
-        const reasons = [
-            "You always know how to make me laugh 🤭",
-            "Your hugs feel like home 🏡",
-            "You’re endlessly curious and passionate 💡",
-            "You light up my day just by being in it ☀️",
-            "You believe in me even when I don’t 💖"
-        ];
-
         const videoCategories = {
-            morning: 3, 
+            morning: 3,
             afternoon: 2,
             evening: 2,
             night: 1
@@ -223,25 +215,20 @@
             videoElement.play();  // Start playing
         }
 
-        function getGlobalDailyReason() {
-            const startDate = new Date("2025-10-08T00:00:00"); // Set your fixed anchor date
-            const now = new Date();
-
-            const msPerDay = 24 * 60 * 60 * 1000;
-            const daysSinceStart = Math.floor((now - startDate) / msPerDay);
-
-            const index = daysSinceStart % reasons.length;
-            return reasons[index];
-        }
-
-        function showDailyReason() {
-            const reason = getGlobalDailyReason();
-            document.getElementById("reason").textContent = reason;
+        async function fetchDailyReason() {
+            try {
+                const response = await fetch('/api/reason');
+                const data = await response.json();
+                return data.reason;
+            } catch (error) {
+                console.error("Failed to fetch reason:", error);
+                return "You mean so much to me 💖"; // Fallback
+            }
         }
 
         setBackgroundVideo();
 
-        function revealReason(el) {
+        async function revealReason(el) {
             el.style.transform = "translate(-50%, -50%) scale(0.9)";
             setTimeout(() => {
                 el.style.transform = "translate(-50%, -50%) scale(1.1)";
@@ -273,12 +260,14 @@
                 el.style.opacity = 0;
             }, 500);
 
-            setTimeout(() => {
-                showDailyReason();
-                document.getElementById('reason').classList.add('visible');
+            setTimeout(async () => {
+                const reason = await fetchDailyReason();
+                document.getElementById("reason").textContent = reason;
+                document.getElementById("reason").classList.add("visible");
             }, 900);
         }
     </script>
+
 
 </body>
 
