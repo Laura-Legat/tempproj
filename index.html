@@ -224,10 +224,32 @@
             videoElement.play();  // Start playing
         }
 
-        function showRandomReason() {
-            const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
-            document.getElementById('reason').textContent = randomReason;
+        function getTodayDateString() {
+                const today = new Date();
+                return today.toISOString().split("T")[0]; // Format: "2025-10-02"
+            }
+
+        function getDailyReason() {
+                const today = getTodayDateString();
+                const storedDate = localStorage.getItem("reason-date");
+                const storedReason = localStorage.getItem("reason-text");
+
+                if (storedDate === today && storedReason) {
+                    return storedReason; // Return saved reason
+                }
+
+                // New day: pick and store a new reason
+                const newReason = reasons[Math.floor(Math.random() * reasons.length)];
+                localStorage.setItem("reason-date", today);
+                localStorage.setItem("reason-text", newReason);
+                return newReason;
         }
+
+        function showRandomReason() {
+                const reason = getDailyReason();
+                document.getElementById("reason").textContent = reason;
+        }
+
 
         setBackgroundVideo();
 
@@ -268,8 +290,6 @@
                     document.getElementById('reason').classList.add('visible');
                 }, 900);
             }
-
-
     </script>
 
 </body>
