@@ -219,6 +219,7 @@
             try {
                 const response = await fetch('/api/reason');
                 const data = await response.json();
+                console.log(data)
                 return data.reason;
             } catch (error) {
                 console.error("Failed to fetch reason:", error);
