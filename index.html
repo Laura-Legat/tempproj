@@ -83,12 +83,13 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 4rem;
+            font-size: 6rem; /* made bigger */
             cursor: pointer;
             z-index: 2;
             user-select: none;
             transition: transform 0.15s ease;
-            }
+        }
+
 
         .reason-text {
             position: absolute;
@@ -231,44 +232,52 @@
         }
 
         setBackgroundVideo();
-        showRandomReason();
 
         function revealReason(el) {
                 // 1. Press animation
-                el.style.transform = "translate(-50%, -50%) scale(0.85)";
+                el.style.transform = "translate(-50%, -50%) scale(0.9)";
                 setTimeout(() => {
-                    el.style.transform = "translate(-50%, -50%) scale(1.2)";
-                }, 100);
+                    el.style.transform = "translate(-50%, -50%) scale(1.1)";
+                }, 150);
 
-                // 2. Create emoji burst
-                for (let i = 0; i < 20; i++) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('particle');
-                    particle.textContent = "🌟";
-                    const x = (Math.random() - 0.5) * 200 + 'px';
-                    const y = (Math.random() - 0.5) * 200 + 'px';
-                    particle.style.left = "50%";
-                    particle.style.top = "50%";
-                    particle.style.setProperty('--x', x);
-                    particle.style.setProperty('--y', y);
-                    document.getElementById('particles').appendChild(particle);
+                // 2. Slight delay before particle burst
+                setTimeout(() => {
+                    for (let i = 0; i < 25; i++) { // More particles
+                        const particle = document.createElement('div');
+                        particle.classList.add('particle');
+                        particle.textContent = "🌟";
 
-                    // Remove after animation
-                    setTimeout(() => {
-                        particle.remove();
-                    }, 800);
-                }
+                        // More spread out range (±300 px)
+                        const x = (Math.random() - 0.5) * 300 + 'px';
+                        const y = (Math.random() - 0.5) * 300 + 'px';
+
+                        particle.style.left = "50%";
+                        particle.style.top = "50%";
+                        particle.style.setProperty('--x', x);
+                        particle.style.setProperty('--y', y);
+
+                        document.getElementById('particles').appendChild(particle);
+
+                        // Remove after animation
+                        setTimeout(() => {
+                            particle.remove();
+                        }, 1000);
+                    }
+                }, 300); // Delayed to happen just as letter is growing
 
                 // 3. Fade out the letter
                 setTimeout(() => {
                     el.style.opacity = 0;
-                }, 300);
+                }, 500);
 
-                // 4. Show the reason after a short delay
+                // 4. Load and show reason
                 setTimeout(() => {
+                    showRandomReason();  // Load the text
                     document.getElementById('reason').classList.add('visible');
-                }, 700);
-        }
+                }, 900);
+            }
+
+
     </script>
 
 </body>
