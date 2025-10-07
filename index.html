@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>tqdm 💞🫰</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
     <style>
         body,
         html {
@@ -42,6 +43,29 @@
             animation: fadeIn 2s ease-in-out forwards;
         }
 
+        .cute-heading {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 2rem;
+            color: #ffd6e0; /* soft pink */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            font-family: 'Helvetica Neue', sans-serif;
+            animation: float 4s ease-in-out infinite;
+            }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -57,6 +81,8 @@
 </head>
 
 <body>
+    <h1 class="cute-heading">reasons I tqdm</h1>
+
     <video autoplay muted loop class="bg-video" id="bgVideo">
         <source id="videoSource" src="" type="video/mp4">
         Your browser does not support the video tag.
