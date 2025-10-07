@@ -58,9 +58,9 @@
 
 <body>
 
-    <!-- Video Background -->
-    <video autoplay muted loop class="bg-video">
-        <source src="assets/videos/background.mp4" type="video/mp4">
+    <!-- Placeholder video element -->
+    <video autoplay muted loop class="bg-video" id="bgVideo">
+        <source id="videoSource" src="" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
@@ -69,8 +69,8 @@
         <div id="reason">Loading...</div>
     </div>
 
-    <!-- Script to Show a Random Reason -->
     <script>
+        // Random love reasons
         const reasons = [
             "You always know how to make me laugh 🤭",
             "Your hugs feel like home 🏡",
@@ -79,9 +79,51 @@
             "You believe in me even when I don’t 💖"
         ];
 
-        // Pick and display one random reason
-        const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
-        document.getElementById('reason').textContent = randomReason;
+        const videoCategories = {
+            morning: 3, 
+            afternoon: 2,
+            evening: 2,
+            night: 1
+        };
+
+        function getTimeOfDay() {
+            const hour = new Date().getHours();
+
+            if (hour >= 6 && hour < 13) {
+                return "morning";
+            } else if (hour >= 13 && hour < 18) {
+                return "afternoon";
+            } else if (hour >= 18 && hour < 22) {
+                return "evening";
+            } else {
+                return "night";
+            }
+        }
+
+        function selectRandomVideo() {
+            const timeOfDay = getTimeOfDay();
+            const maxVideos = videoCategories[timeOfDay];
+            const randomIndex = Math.floor(Math.random() * maxVideos) + 1;
+            return `assets/videos/${timeOfDay}${randomIndex}.mp4`;
+        }
+
+        function setBackgroundVideo() {
+            const videoPath = selectRandomVideo();
+            const videoSource = document.getElementById('videoSource');
+            videoSource.src = videoPath;
+
+            const videoElement = document.getElementById('bgVideo');
+            videoElement.load();  // Reload video with new source
+            videoElement.play();  // Start playing
+        }
+
+        function showRandomReason() {
+            const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
+            document.getElementById('reason').textContent = randomReason;
+        }
+
+        setBackgroundVideo();
+        showRandomReason();
     </script>
 
 </body>
