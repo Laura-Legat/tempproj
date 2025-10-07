@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>tqdm</title>
     <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap"
+        rel="stylesheet">
+
     <style>
         body,
         html {
@@ -49,12 +52,12 @@
             width: 100%;
             text-align: center;
             font-size: 2rem;
-            color: #ffd6e0; /* soft pink */
+            color: white;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
             z-index: 2;
-            font-family: 'Helvetica Neue', sans-serif;
-            animation: float 4s ease-in-out infinite;
-            }
+            font-family: 'Pacifico', cursive;
+        }
+
 
         @keyframes float {
             0%, 100% {
@@ -103,7 +106,12 @@
             transition: opacity 1s ease;
             z-index: 2;
             max-width: 90%;
+            font-family: 'Quicksand', sans-serif;
+            animation: float 4s ease-in-out infinite; /* 👈 soft float like heading before */
+            font-weight: 600;
+            font-size: 2.4rem;
         }
+
 
         .reason-text.visible {
             opacity: 1;
@@ -157,7 +165,7 @@
     
     <!-- 📜 The hidden love reason -->
     <div class="content fade-in">
-        <div id="reason">Loading...</div>
+        <div class="reason-text" id="reason"></div>
     </div>
     
     <!-- 🔗 Attribution -->
