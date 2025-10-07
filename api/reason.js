@@ -1,6 +1,7 @@
 export default function handler(req, res) {
     const raw = process.env.REASONS || "";
-    console.log(raw)
+    console.log("hello");
+    console.log(raw);
     const reasons = raw.split("|");
 
     const startDate = new Date("2025-10-08T00:00:00Z");
