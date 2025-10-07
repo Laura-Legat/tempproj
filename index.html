@@ -226,7 +226,27 @@
             }
         }
 
-        setBackgroundVideo();
+        function selectAnyRandomVideo() {
+                const categories = Object.keys(videoCategories);
+                const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+                const maxVideos = videoCategories[randomCategory];
+                const randomIndex = Math.floor(Math.random() * maxVideos) + 1;
+                return `assets/videos/${randomCategory}${randomIndex}.mp4`;
+            }
+
+        function setRandomTestBackgroundVideo() {
+                const videoPath = selectAnyRandomVideo();
+                const videoSource = document.getElementById('videoSource');
+                videoSource.src = videoPath;
+
+                const videoElement = document.getElementById('bgVideo');
+                videoElement.load();
+                videoElement.play();
+        }
+
+
+        //setBackgroundVideo();
+        setRandomTestBackgroundVideo();
 
         async function revealReason(el) {
             el.style.transform = "translate(-50%, -50%) scale(0.9)";
