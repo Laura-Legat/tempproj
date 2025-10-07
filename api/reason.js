@@ -1,8 +1,7 @@
 export default function handler(req, res) {
     const raw = process.env.REASONS || "";
-    console.log("hello");
-    console.log(raw);
     const reasons = raw.split("|");
+    console.log(reasons)
 
     const startDate = new Date("2025-10-08T00:00:00Z");
     const now = new Date();
@@ -11,7 +10,9 @@ export default function handler(req, res) {
     const daysSinceStart = Math.floor((now - startDate) / msPerDay);
 
     const index = daysSinceStart % reasons.length;
+    console.log(index)
     const reason = reasons[index];
+    console.log(reason)
 
     res.status(200).json({ reason });
 }
