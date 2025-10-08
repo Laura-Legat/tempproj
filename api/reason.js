@@ -6,6 +6,7 @@ export default function handler(req, res) {
 
     const startDate = new Date("2025-10-07T00:00:00Z");
     const now = new Date();
+    console.log(now);
 
     const msPerDay = 24 * 60 * 60 * 1000;
     const daysSinceStart = Math.max(0, Math.floor((now - startDate) / msPerDay));
