@@ -212,8 +212,8 @@
             videoSource.src = videoPath;
 
             const videoElement = document.getElementById('bgVideo');
-            videoElement.load();  // Reload video with new source
-            videoElement.play();  // Start playing
+            videoElement.load();  
+            videoElement.play();  
         }
 
         async function fetchDailyReason() {
@@ -223,7 +223,7 @@
                 return data.reason;
             } catch (error) {
                 console.error("Failed to fetch reason:", error);
-                return "You mean so much to me 💖"; // Fallback
+                return "You mean so much to me 💖"; 
             }
         }
 
