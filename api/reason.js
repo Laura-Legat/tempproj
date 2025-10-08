@@ -4,7 +4,7 @@ export default function handler(req, res) {
 
     console.log(reasons);
 
-    const startDate = new Date("2025-10-07T20:00:00Z");
+    const startDate = new Date("2025-10-07T16:00:00Z");
     const now = new Date();
     console.log(now);
 
