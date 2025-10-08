@@ -187,15 +187,12 @@
 
         function getTimeOfDay() {
             const hour = new Date().getHours();
-            const newhour = (hour + 8) % 24;
 
-            console.log(newhour);
-
-            if (newhour >= 6 && newhour < 13) {
+            if (hour >= 6 && hour < 13) {
                 return "morning";
-            } else if (newhour >= 13 && newhour < 18) {
+            } else if (hour >= 13 && hour < 18) {
                 return "afternoon";
-            } else if (newhour >= 18 && newhour < 22) {
+            } else if (hour >= 18 && hour < 22) {
                 return "evening";
             } else {
                 return "night";
